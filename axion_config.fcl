@@ -1,0 +1,35 @@
+#include "simulationservices_dune.fcl"
+#include "services_dune.fcl"
+
+#include "calorimetry_dune10kt.fcl"
+#include "showeralgorithms.fcl"
+#include "ctphelper.fcl"
+#include "neutrinoenergyrecoalg_dune.fcl"
+
+BEGIN_PROLOG
+
+axion:
+{
+   module_type:    "AxionAnalyzer"
+   GeneratorModuleLabel: "generator"
+   GeantModuleLabel: "largeant"
+   PFParticleModuleLabel:     "pandora"
+   TrackModuleLabel:          "pandoraTrack"
+   ShowerModuleLabel:         "pandoraShower"
+   CaloModuleLabel: "pandoracalo"
+   PIDModuleLabel: "pandorapid"
+   SpacePointModuleLabel: "pandora"
+   HitModuleLabel: "linecluster"
+   CVNModuleLabel: "cvneva"
+   MVAPIDModuleLabel: "pid"
+   EnergyRecNCLabel: "energyrecnc"
+   SaveGeantInfo: "true"
+   CheatVertex:   "false"
+   ShowerRecoSave: "true"
+   WireModuleLabel:  "tpcrawdecoder:gauss"
+   NeutrinoEnergyRecoAlg:       @local::dune10kt_neutrinoenergyrecoalg
+   CalorimetryAlg:          @local::dune10kt_calorimetryalgmc
+
+}
+
+END_PROLOG
